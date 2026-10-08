@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Palette for the whole sample. Screens reference these names and never write a hex value,
+    so the look can be changed here alone.
+
+    The brand red and the greys are the ones the RFID Control app already ships with; the
+    darker red is that red taken down for the pressed state. The app is light-only on purpose
+    - a sample that looks the same on every handheld is easier to talk about in support.
+-->
+<resources>
+
+    <!-- Brand -->
+    <color name="pm_red">#B93920</color>
+    <color name="pm_red_pressed">#962D19</color>
+    <color name="pm_red_disabled">#E2B5AC</color>
+    <color name="pm_red_tint">#FFF7F5</color>
+    <color name="pm_red_tint_strong">#F7DCD6</color>
+
+    <!-- Text -->
+    <color name="pm_text_primary">#333333</color>
+    <color name="pm_text_secondary">#666666</color>
+    <color name="pm_text_tertiary">#999999</color>
+    <color name="pm_text_on_red">#FFFFFF</color>
+
+    <!-- Surface -->
+    <color name="pm_background">#FAFAFA</color>
+    <color name="pm_surface">#FFFFFF</color>
+    <color name="pm_divider">#E0E0E0</color>
+    <color name="pm_pressed">#F5F5F5</color>
+
+    <!-- Status. Used for the connection state line and for result codes. -->
+    <color name="pm_ok">#2E7D32</color>
+    <color name="pm_ok_tint">#E8F5E9</color>
+    <color name="pm_error">#C62828</color>
+    <color name="pm_error_tint">#FFEBEE</color>
+
+    <!--
+        Log panel. Dark on purpose: it separates what the reader said from what the user
+        drives, and long hex payloads read better on it. Its reds and greens are lighter than
+        the ones above because the brand red is too dark to read on this background.
+    -->
+    <color name="pm_log_background">#22252A</color>
+    <color name="pm_log_text">#D5D8DE</color>
+    <color name="pm_log_titlebar">#31353C</color>
+    <color name="pm_log_dim">#7F8794</color>
+    <color name="pm_log_ok">#7BD88F</color>
+    <color name="pm_log_error">#FF6B5B</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

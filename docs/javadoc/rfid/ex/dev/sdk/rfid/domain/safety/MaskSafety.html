@@ -1,0 +1,614 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>MaskSafety </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ex.dev.sdk.rfid.domain.safety</a></div>
+        <h2 title="Object MaskSafety" class="title">Object MaskSafety</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public class <span class="typeNameLabel"><a href=MaskSafety.html>MaskSafety</a></span>
+
+                    </pre>
+                    <div class="block"><p>Validation helpers for checking whether a masked operation selects the intended tag.</p><p>A masked access runs a Gen2 Select and then acts on the selected tags. Several Select actions do not select the matching tag: under action <code>4</code> the matching tag is deselected and every other tag is selected, so a masked kill would destroy every tag in the field except the intended one, and the reader would report success.</p><p>Readers: RF88 · MF52. The SDK does not check this — a masked command goes out under whatever Select is in force, and the reader acts on the tags it selects. Use these helpers to check the settings before a masked write, lock or kill, or to tell an operator what is wrong with them.</p><p>The required arguments depend on the reader. The Select target requirement applies only to the MF52. Pass <code>RfidManager.getAction()</code> for either reader, and add <code>RfidManager.getTarget()</code> only when the MF52 is the one connected — passing the RF88's target reports its ordinary configuration as unsafe.</p></div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public final static <a href=MaskSafety.html>MaskSafety</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#INSTANCE>INSTANCE</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final static <a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#actsOnMatchingTag(java.lang.String,java.lang.String)>actsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> target) </code>
+                                            </th>
+                                            <td class="colLast">Whether a masked operation run with this Select configuration acts on the matching tag.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final static <a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#actsOnMatchingTag(java.lang.String,java.lang.String)>actsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action) </code>
+                                            </th>
+                                            <td class="colLast">Whether a masked operation run with this Select configuration acts on the matching tag.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#explainUnsafe(java.lang.String,java.lang.String)>explainUnsafe</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> target) </code>
+                                            </th>
+                                            <td class="colLast">Explains why a masked operation would not act on the matching tag, or null when it would.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#explainUnsafe(java.lang.String,java.lang.String)>explainUnsafe</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action) </code>
+                                            </th>
+                                            <td class="colLast">Explains why a masked operation would not act on the matching tag, or null when it would.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>final static <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#requireActsOnMatchingTag(java.lang.String,java.lang.String,java.lang.String)>requireActsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> operation, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> target) </code>
+                                            </th>
+                                            <td class="colLast">Throws when a masked operation would not act on the matching tag.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>final static <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#requireActsOnMatchingTag(java.lang.String,java.lang.String,java.lang.String)>requireActsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> operation, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action) </code>
+                                            </th>
+                                            <td class="colLast">Throws when a masked operation would not act on the matching tag.</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>final static <a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=MaskSafety.html#isIrreversible(java.lang.String)>isIrreversible</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> operation) </code>
+                                            </th>
+                                            <td class="colLast">Whether <a href=MaskSafety.html#isIrreversible(java.lang.String)>operation</a> destroys or permanently alters a tag.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="actsOnMatchingTag(java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>actsOnMatchingTag</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html>JvmOverloads</a>() final static <a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a> <a href=MaskSafety.html#actsOnMatchingTag(java.lang.String,java.lang.String)>actsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> target)</pre>
+                                        <div class="block"><p>Whether a masked operation run with this Select configuration acts on the matching tag.</p><p>Pass what <code>RfidManager.getAction()</code> returns, not null. Null is read as the reader default — the ordinary select, which is safe — but on the MF52 the action is kept for the whole device, so another app may have left an inverting one in force. An empty string, which the getter returns when it could not read the value, is reported unsafe.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>action</code> - the Select action in force, as <code>RfidManager.getAction()</code> returns it.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>target</code> - the Select target, on the MF52 only.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="actsOnMatchingTag(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>actsOnMatchingTag</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html>JvmOverloads</a>() final static <a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a> <a href=MaskSafety.html#actsOnMatchingTag(java.lang.String,java.lang.String)>actsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action)</pre>
+                                        <div class="block"><p>Whether a masked operation run with this Select configuration acts on the matching tag.</p><p>Pass what <code>RfidManager.getAction()</code> returns, not null. Null is read as the reader default — the ordinary select, which is safe — but on the MF52 the action is kept for the whole device, so another app may have left an inverting one in force. An empty string, which the getter returns when it could not read the value, is reported unsafe.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>action</code> - the Select action in force, as <code>RfidManager.getAction()</code> returns it.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="explainUnsafe(java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>explainUnsafe</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html>JvmOverloads</a>() final static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=MaskSafety.html#explainUnsafe(java.lang.String,java.lang.String)>explainUnsafe</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> target)</pre>
+                                        <div class="block"><p>Explains why a masked operation would not act on the matching tag, or null when it would.</p><p>The returned message describes the selection problem and can be displayed to an operator.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>action</code> - the Select action in force, as <code>RfidManager.getAction()</code> returns it.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>target</code> - the Select target, on the MF52 only.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="explainUnsafe(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>explainUnsafe</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html>JvmOverloads</a>() final static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=MaskSafety.html#explainUnsafe(java.lang.String,java.lang.String)>explainUnsafe</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action)</pre>
+                                        <div class="block"><p>Explains why a masked operation would not act on the matching tag, or null when it would.</p><p>The returned message describes the selection problem and can be displayed to an operator.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>action</code> - the Select action in force, as <code>RfidManager.getAction()</code> returns it.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="requireActsOnMatchingTag(java.lang.String,java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requireActsOnMatchingTag</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html>JvmOverloads</a>() final static <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a> <a href=MaskSafety.html#requireActsOnMatchingTag(java.lang.String,java.lang.String,java.lang.String)>requireActsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> operation, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> target)</pre>
+                                        <div class="block"><p>Throws when a masked operation would not act on the matching tag.</p><p>Call before building any masked command. <a href=MaskSafety.html#requireActsOnMatchingTag(java.lang.String,java.lang.String,java.lang.String)>operation</a> names the caller for the message.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="requireActsOnMatchingTag(java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requireActsOnMatchingTag</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html>JvmOverloads</a>() final static <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a> <a href=MaskSafety.html#requireActsOnMatchingTag(java.lang.String,java.lang.String,java.lang.String)>requireActsOnMatchingTag</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> operation, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> action)</pre>
+                                        <div class="block"><p>Throws when a masked operation would not act on the matching tag.</p><p>Call before building any masked command. <a href=MaskSafety.html#requireActsOnMatchingTag(java.lang.String,java.lang.String,java.lang.String)>operation</a> names the caller for the message.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="isIrreversible(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>isIrreversible</h4>
+                                        <pre class="methodSignature"> final static <a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a> <a href=MaskSafety.html#isIrreversible(java.lang.String)>isIrreversible</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> operation)</pre>
+                                        <div class="block"><p>Whether <a href=MaskSafety.html#isIrreversible(java.lang.String)>operation</a> destroys or permanently alters a tag.</p><p><a href=MaskSafety.html#isIrreversible(java.lang.String)>operation</a> is a short display name, not an <code>OperationType</code>: only <code>&quot;kill&quot;</code> and <code>&quot;lock&quot;</code> return <code>true</code>.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

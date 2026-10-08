@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The log panel: the bar it folds down to, and the height it opens to. The fold animates
+         between the two, so both numbers come from here rather than being written down twice. -->
+    <dimen name="log_bar_height">44dp</dimen>
+    <dimen name="log_open_height">280dp</dimen>
+</resources>

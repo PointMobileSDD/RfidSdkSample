@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The SDK log, as a terminal window folded away at the bottom of the screen.
+
+    Every screen carries the same log, so it lives here: include it as the last row of the screen's
+    column and each screen's own layout stays about that screen. It takes a row of its own rather than
+    floating over the screen, so it never covers anything, and folding it is its height going to zero.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/logSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_log_sheet"
+    android:elevation="12dp"
+    android:orientation="vertical">
+
+    <!-- The title bar, as a terminal has: three dots on the left, the name in the middle. -->
+    <FrameLayout
+        android:id="@+id/logHandle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/log_bar_height"
+        android:background="@drawable/bg_log_titlebar"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp">
+
+            <View
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:background="@drawable/dot_red" />
+
+            <View
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:layout_marginStart="7dp"
+                android:background="@drawable/dot_amber" />
+
+            <View
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:layout_marginStart="7dp"
+                android:background="@drawable/dot_green" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/logTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/log_title"
+            android:textColor="@color/pm_log_dim"
+            android:textSize="12sp"
+            android:typeface="monospace" />
+
+        <ImageView
+            android:id="@+id/logChevron"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="14dp"
+            android:contentDescription="@string/log_title"
+            android:rotation="180"
+            android:src="@drawable/ic_chevron"
+            app:tint="@color/pm_log_dim" />
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/logScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="14dp"
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:textColor="@color/pm_log_text"
+            android:textSize="12sp"
+            android:typeface="monospace" />
+    </ScrollView>
+</LinearLayout>

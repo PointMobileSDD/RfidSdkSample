@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One setting. The dropdown is used when the reader publishes a fixed set of values. -->
+<com.google.android.material.textfield.TextInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/field"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    style="@style/Widget.RfidSample.Field.Dropdown">
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:popupBackground="@color/pm_surface"
+        android:textColor="@color/pm_text_primary"
+        android:textSize="14sp" />
+</com.google.android.material.textfield.TextInputLayout>

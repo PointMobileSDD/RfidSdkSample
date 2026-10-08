@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The title bar sits a shade lighter than the pane, as a terminal's does. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/pm_log_titlebar" />
+    <corners
+        android:topLeftRadius="12dp"
+        android:topRightRadius="12dp" />
+</shape>

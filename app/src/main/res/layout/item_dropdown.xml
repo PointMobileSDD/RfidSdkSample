@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    One row in a dropdown. Material3 paints its own rows from the secondary container role, which
+    comes back as the framework purple however the theme is set, so the app supplies the row instead.
+-->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="14dp"
+    android:textColor="@color/pm_text_primary"
+    android:textSize="14sp" />

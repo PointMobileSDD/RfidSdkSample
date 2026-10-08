@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One setting whose value is free text — the reader publishes no list to choose from. -->
+<com.google.android.material.textfield.TextInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/field"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    style="@style/Widget.RfidSample.Field">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        style="@style/Text.RfidSample.Field" />
+</com.google.android.material.textfield.TextInputLayout>

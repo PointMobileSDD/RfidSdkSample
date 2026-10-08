@@ -1,0 +1,19 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:ex.dev.sdk.rfid.domain.constants/ConfigValue.Flag///PointingToDeclaration/ex/dev/sdk/rfid/domain/constants/ConfigValue.Flag.html
+$dokka.location:ex.dev.sdk.rfid.domain.constants/ConfigValue.MemoryBank///PointingToDeclaration/ex/dev/sdk/rfid/domain/constants/ConfigValue.MemoryBank.html
+$dokka.location:ex.dev.sdk.rfid.domain.constants/ConfigValue.SearchMode///PointingToDeclaration/ex/dev/sdk/rfid/domain/constants/ConfigValue.SearchMode.html
+$dokka.location:ex.dev.sdk.rfid.domain.constants/ConfigValue.SelectAction///PointingToDeclaration/ex/dev/sdk/rfid/domain/constants/ConfigValue.SelectAction.html
+$dokka.location:ex.dev.sdk.rfid.domain.constants/ConfigValue.Session///PointingToDeclaration/ex/dev/sdk/rfid/domain/constants/ConfigValue.Session.html
+$dokka.location:ex.dev.sdk.rfid.domain.constants/ConfigValue.Target///PointingToDeclaration/ex/dev/sdk/rfid/domain/constants/ConfigValue.Target.html
+$dokka.location:ex.dev.sdk.rfid.domain.reader/ConnectionState.Companion///PointingToDeclaration/ex/dev/sdk/rfid/domain/reader/ConnectionState.Companion.html
+$dokka.location:ex.dev.sdk.rfid.domain.reader/ConnectionType.Companion///PointingToDeclaration/ex/dev/sdk/rfid/domain/reader/ConnectionType.Companion.html
+$dokka.location:ex.dev.sdk.rfid.domain.reader/LockActionMask.Companion///PointingToDeclaration/ex/dev/sdk/rfid/domain/reader/LockActionMask.Companion.html
+ex.dev.sdk.rfid
+ex.dev.sdk.rfid.domain.constants
+ex.dev.sdk.rfid.domain.operation
+ex.dev.sdk.rfid.domain.reader
+ex.dev.sdk.rfid.domain.safety
+ex.dev.sdk.rfid.domain.tag
+ex.dev.sdk.rfid.frameworks
+ex.dev.sdk.rfid.frameworks.listener

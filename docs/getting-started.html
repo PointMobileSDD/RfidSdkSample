@@ -1,0 +1,842 @@
+<title>Point Mobile SDK · Installation Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+
+:root {
+  --paper:      #FFFFFF;
+  --surface:    #FFFFFF;
+  --surface-2:  #F2F3F5;
+  --band:       #E9EAEC;
+  --ink:        #1A1D23;
+  --ink-soft:   #545A66;
+  --ink-faint:  #868D9A;
+  --rule:       #D5D8DD;
+  --rule-soft:  #E6E8EB;
+  --red:        #CD2232;
+  --red-rule:   #BF2021;
+  --red-wash:   #FBECEE;
+  --navy:       #24346B;
+  --navy-wash:  #E9ECF5;
+  --green:      #00875A;
+  --code-type:  #6B45B5;
+  --code-num:   #A65A00;
+
+  --display: Archivo, ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:     #101318;
+    --surface:   #161A21;
+    --surface-2: #1D222B;
+    --band:      #222833;
+    --ink:       #E6E9ED;
+    --ink-soft:  #A3AAB6;
+    --ink-faint: #757D8B;
+    --rule:      #2A313C;
+    --rule-soft: #212832;
+    --red:       #F2606B;
+    --red-rule:  #D8323F;
+    --red-wash:  #2E1519;
+    --navy:      #8496DE;
+    --navy-wash: #171D33;
+    --green:     #35B183;
+    --code-type: #B79CF2;
+    --code-num:  #E9A35C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:   #101318;
+  --surface:   #161A21;
+  --surface-2: #1D222B;
+  --band:    #222833;
+  --ink:     #E6E9ED;
+  --ink-soft:  #A3AAB6;
+  --ink-faint: #757D8B;
+  --rule:    #2A313C;
+  --rule-soft: #212832;
+  --red:     #F2606B;
+  --red-rule:  #D8323F;
+  --red-wash:  #2E1519;
+  --navy:    #8496DE;
+  --navy-wash: #171D33;
+  --green:   #35B183;
+  --code-type: #B79CF2;
+  --code-num: #E9A35C;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── shell ─────────────────────────────────────────────────────────── */
+
+.shell {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 48px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px 96px;
+}
+
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 40px 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.brand { display: flex; flex-direction: column; gap: 6px; }
+.brand .name {
+  font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+}
+.brand .meta {
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint);
+  display: flex; gap: 8px; align-items: center;
+}
+.brand .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+
+.toc { display: flex; flex-direction: column; gap: 1px; }
+.toc a {
+  display: block;
+  padding: 5px 12px;
+  border-left: 2px solid var(--rule-soft);
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 13.5px;
+}
+.toc a:hover { color: var(--ink); border-left-color: var(--red); background: var(--surface-2); }
+.toc a:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+.toc .grp {
+  padding: 14px 12px 4px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.main { padding: 40px 0 0; min-width: 0; }
+
+/* ── masthead ──────────────────────────────────────────────────────── */
+
+.masthead { padding-bottom: 40px; border-bottom: 1px solid var(--rule); margin-bottom: 48px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .11em; line-height: 1.7;
+  text-transform: uppercase; color: var(--red); margin-bottom: 18px;
+}
+.eyebrow span { color: var(--ink-faint); }
+h1 {
+  margin: 0 0 16px;
+  font-family: var(--display);
+  font-size: 46px; line-height: 1.04; font-weight: 700; letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+/* 사용자 설명서의 서명 장치 — 제목 아래 빨간 룰 */
+h1::after {
+  content: ""; display: block; width: 100%; height: 3px;
+  background: var(--red-rule); margin-top: 18px;
+}
+.lede {
+  font-size: 18px; line-height: 1.6;
+  color: var(--ink-soft); max-width: 36em; margin: 18px 0 0;
+}
+.lede em { color: var(--ink); font-style: normal; font-weight: 600; }
+
+/* ── sections ──────────────────────────────────────────────────────── */
+
+section { margin-bottom: 60px; scroll-margin-top: 24px; }
+
+h2 {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 4px 20px 4px 12px;
+  background: var(--red);
+  color: #FFFFFF;
+  font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
+}
+h3 {
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--red-rule);
+  font-family: var(--display);
+  font-size: 25px; font-weight: 600; letter-spacing: -0.022em; line-height: 1.2;
+  text-wrap: balance;
+}
+h4 {
+  margin: 32px 0 10px;
+  font-size: 15px; font-weight: 600; letter-spacing: -0.005em;
+}
+p { margin: 0 0 14px; max-width: 68ch; }
+p:last-child { margin-bottom: 0; }
+.dim { color: var(--ink-soft); }
+
+code {
+  font-family: var(--mono); font-size: .875em;
+  background: var(--surface-2); padding: 1px 5px;
+  color: var(--ink);
+}
+
+a { color: var(--red); }
+
+/* ── reader chips ──────────────────────────────────────────────────── */
+
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: .03em;
+  padding: 2px 7px; white-space: nowrap;
+}
+.chip.rf { background: var(--red-wash); color: var(--red); }
+.chip.mf { background: var(--navy-wash); color: var(--navy); }
+.chip.off { background: transparent; color: var(--ink-faint); }
+.chip .led { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.chip.off .led { background: transparent; box-shadow: inset 0 0 0 1px currentColor; }
+
+/* ── reader cards ──────────────────────────────────────────────────── */
+
+.readers { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.reader {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-top: 3px solid var(--edge); padding: 20px 20px 18px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.reader.rf { --edge: var(--red); }
+.reader.mf { --edge: var(--navy); }
+.reader .rname { font-family: var(--display); font-size: 19px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+.reader .rkind { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+.reader p { font-size: 14px; margin: 0; }
+.reader dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 13px; }
+.reader dt { color: var(--ink-faint); }
+.reader dd { margin: 0; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── code blocks ───────────────────────────────────────────────────── */
+
+.code {
+  background: var(--surface); border: 1px solid var(--rule);
+  overflow: hidden; margin: 0 0 16px;
+}
+.code .cap {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 14px; border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--mono); font-size: 11px; color: var(--ink-faint);
+  letter-spacing: .04em;
+}
+.code pre {
+  margin: 0; padding: 16px 18px; overflow-x: auto;
+  font-family: var(--mono); font-size: 12.75px; line-height: 1.65;
+  color: var(--ink);
+}
+.code .cm { color: var(--ink-faint); }
+.code .kw { color: var(--red); }
+.code .fn { color: var(--green); }
+.code .ty { color: var(--code-type); }
+.code .nu, .code .va { color: var(--code-num); }
+.code .an { color: var(--ink-soft); }
+.code .st { color: var(--navy); }
+
+/* ── result codes: two channels ────────────────────────────────────── */
+
+.channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.channel {
+  background: var(--surface); border: 1px solid var(--rule);
+  padding: 18px 20px 8px;
+}
+.channel > header { margin-bottom: 14px; }
+.channel .who {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 4px;
+}
+.channel .what { font-family: var(--display); font-size: 16px; font-weight: 600; letter-spacing: -0.005em; }
+.channel .sub { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+.codes td { padding: 6px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: baseline; }
+.codes tr:last-child td { border-bottom: 0; }
+.codes .hex {
+  font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums;
+  width: 3.4em; color: var(--ink);
+}
+.codes .ok .hex { color: var(--navy); }
+.codes .sdkc .hex { color: var(--red); }
+
+/* ── key matrix ────────────────────────────────────────────────────── */
+
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; align-items: center; }
+.filters button {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 500;
+  padding: 5px 12px; cursor: pointer;
+  background: var(--surface); color: var(--ink-soft);
+  border: 1px solid var(--rule);
+}
+.filters button:hover { color: var(--ink); }
+.filters button[aria-pressed="true"] { background: var(--red); color: #FFFFFF; border-color: var(--red); }
+.filters button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.filters .count {
+  margin-left: auto; font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.matrix-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+.matrix { font-size: 13.5px; }
+.matrix th {
+  text-align: left; padding: 9px 16px; font-size: 10.5px; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--ink-faint);
+  border-bottom: 1px solid var(--rule); white-space: nowrap;
+  position: sticky; top: 0; background: var(--band); color: var(--ink);
+}
+.matrix td { padding: 6px 16px; border-bottom: 1px solid var(--rule-soft); white-space: nowrap; }
+.matrix tr:last-child td { border-bottom: 0; }
+.matrix .k { font-family: var(--mono); font-size: 12.5px; }
+.matrix .rw { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+.matrix td.sup { width: 1%; }
+
+/* ── callout ───────────────────────────────────────────────────────── */
+
+.note {
+  display: grid; grid-template-columns: auto 1fr; gap: 12px;
+  background: var(--surface-2); border-left: 3px solid var(--green);
+  padding: 14px 18px; margin: 0 0 16px;
+}
+.note::before {
+  content: "i";
+  width: 18px; height: 18px; margin-top: 2px;
+  display: grid; place-items: center;
+  background: var(--green); color: #FFFFFF;
+  border-radius: 50%;
+  font-family: var(--display); font-size: 12px; font-weight: 700; font-style: italic;
+}
+/* 한 절 안에 제목이 여럿이라, 제목 위에 여백을 두어 앞 내용과 구분한다. 절 머리표 바로 아래 첫 제목은 제외. */
+#start .matrix-wrap { margin-bottom: 16px; }
+#start h3 { margin-top: 48px; }
+#start h2 + h3 { margin-top: 0; }
+.note p { font-size: 14px; }
+.note strong { font-weight: 600; }
+
+/* ── reference card ────────────────────────────────────────────────── */
+
+.refcard {
+  background: var(--surface); border: 1px solid var(--rule);
+  padding: 22px 24px; display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center;
+  justify-content: space-between;
+}
+.refcard .t { font-family: var(--display); font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 4px; }
+.refcard .d { font-size: 13.5px; color: var(--ink-soft); margin: 0; max-width: 46ch; }
+.refcard .genby { display: flex; flex-direction: column; gap: 5px; }
+.refcard .genby .lbl {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.refcard .genby code { font-size: 12.5px; padding: 4px 8px; }
+
+footer {
+  margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint);
+  display: flex; flex-wrap: wrap; gap: 6px 20px;
+}
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; gap: 0; padding: 0 22px 64px; }
+  .rail { position: static; height: auto; padding: 28px 0 0; }
+  .toc { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+  .toc a { border-left: 0; border: 1px solid var(--rule); padding: 4px 10px; font-size: 12.5px; }
+  .toc .grp { display: none; }
+  h1 { font-size: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+.matrix.api td.sig code { font-size: 12.5px; background: none; border: 0; padding: 0; white-space: nowrap; }
+.matrix.api td.ret code { font-size: 11.5px; background: none; border: 0; padding: 0; color: var(--ink-faint); }
+.matrix.api tr[hidden] { display: none; }
+.toc a .n { float: right; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin: 0 0 16px;
+          font-size: 12.5px; color: var(--ink-soft); }
+
+/* ── 코드 예시 탭 ───────────────────────────────────────────────────── */
+
+.code .cap .tabs { display: flex; gap: 0; }
+.code .cap .tabs button { display: inline-flex; align-items: center; gap: 6px; }
+.code .cap .tabs button .lang-mark { flex: 0 0 auto; opacity: .55; transition: opacity .12s ease; }
+.code .cap .tabs button[aria-pressed="true"] .lang-mark { opacity: 1; }
+.code .cap .tabs button.copy .lang-mark { display: none; }
+.code .cap .tabs button {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+  padding: 3px 10px; cursor: pointer;
+  background: transparent; color: var(--ink-faint); border: 1px solid var(--rule);
+}
+.code .cap .tabs button + button { border-left: 0; }
+.code .cap .tabs button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.code .cap .tabs button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.code pre[hidden] { display: none; }
+
+/* ── 언어 선택 ─────────────────────────────────────────────────────── */
+
+.langbar { position: absolute; top: 22px; right: 32px; z-index: 20; }
+.langbar .flag {
+  display: block; flex: 0 0 auto;
+  box-shadow: 0 0 0 1px rgba(20, 24, 34, .18);
+}
+:root:not([data-theme="light"]) .langbar .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, .22); }
+:root[data-theme="dark"] .langbar .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, .22); }
+.langbar .trigger {
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+  font-family: var(--sans); font-size: 12.5px; font-weight: 500; color: var(--ink);
+  padding: 5px 9px 5px 7px; background: var(--surface); border: 1px solid var(--rule);
+}
+.langbar .trigger:hover { border-color: var(--ink-faint); }
+.langbar .trigger:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.langbar .trigger .caret {
+  width: 8px; height: 8px; flex: 0 0 auto; color: var(--ink-faint);
+  transition: transform .12s ease;
+}
+.langbar .trigger[aria-expanded="true"] .caret { transform: rotate(180deg); }
+.langbar .menu[hidden] { display: none; }
+.langbar .menu {
+  position: absolute; top: calc(100% + 4px); right: 0; min-width: 100%;
+  background: var(--surface); border: 1px solid var(--rule);
+  box-shadow: 0 8px 22px rgba(14, 24, 38, .16);
+  display: flex; flex-direction: column; padding: 0; margin: 0; list-style: none;
+}
+.langbar .menu button {
+  display: flex; align-items: center; gap: 9px; width: 100%; cursor: pointer;
+  font-family: var(--sans); font-size: 12.5px; color: var(--ink-soft);
+  padding: 7px 14px 7px 9px; background: none; border: 0; white-space: nowrap;
+}
+.langbar .menu button:hover { background: var(--surface-2); color: var(--ink); }
+.langbar .menu button:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+.langbar .menu button[aria-pressed="true"] { color: var(--ink); font-weight: 600; }
+.langbar .menu button .tick { margin-left: auto; padding-left: 12px; color: var(--red); }
+.langbar .menu button[aria-pressed="false"] .tick { visibility: hidden; }
+
+@media (max-width: 900px) {
+  .langbar { position: static; margin: 0 0 14px; display: flex; justify-content: flex-end; }
+  .langbar .menu { top: auto; }
+}
+
+/* 한국어는 줄바꿈 규칙이 달라 낱말이 끊기지 않게 한다 */
+
+dialog#doc .src {
+  margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--rule-soft);
+  font-size: 12px; color: var(--ink-faint);
+}
+
+/* ── 메서드 상세 다이얼로그 ─────────────────────────────────────────── */
+
+.matrix.api td.sig { width: 60%; }
+.matrix.api td.sig button {
+  font-family: var(--mono); font-size: 12.5px; color: var(--ink);
+  background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap;
+  border-bottom: 1px dotted var(--ink-faint);
+}
+.matrix.api td.sig button:hover { color: var(--red); border-bottom-color: var(--red); }
+.matrix.api td.sig button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+dialog#doc {
+  padding: 0; border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+  max-width: 88ch; width: calc(100% - 40px); max-height: 88vh;
+}
+dialog#doc::backdrop { background: rgba(14, 24, 38, .42); }
+dialog#doc .head {
+  position: sticky; top: 0; background: var(--surface);
+  border-bottom: 2px solid var(--red-rule); padding: 18px 26px 14px;
+  display: flex; gap: 14px; align-items: baseline; justify-content: space-between;
+}
+dialog#doc .head h4 {
+  margin: 0; font-family: var(--mono); font-size: 14px; font-weight: 600;
+  overflow-wrap: anywhere;
+}
+dialog#doc .head .x {
+  background: none; border: 0; cursor: pointer; font-size: 20px; line-height: 1;
+  color: var(--ink-faint); padding: 0 2px;
+}
+dialog#doc .head .x:hover { color: var(--ink); }
+dialog#doc .meta {
+  padding: 12px 26px 0; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint);
+}
+dialog#doc .body { padding: 16px 26px 26px; overflow-y: auto; font-size: 14.5px; line-height: 1.62; }
+dialog#doc .body p { margin: 0 0 12px; max-width: none; }
+dialog#doc .body pre {
+  background: var(--surface-2); border: 1px solid var(--rule-soft);
+  padding: 10px 12px; overflow-x: auto; font-family: var(--mono); font-size: 12px; margin: 0 0 12px;
+}
+dialog#doc .body ul { margin: 0 0 12px; padding-left: 20px; }
+dialog#doc .body li { margin-bottom: 5px; }
+dialog#doc .body code { font-size: .87em; }
+dialog#doc .tags {
+  border-top: 1px solid var(--rule-soft); margin-top: 16px; padding-top: 14px;
+  display: grid; gap: 10px;
+}
+dialog#doc .tags .t { display: grid; grid-template-columns: 11em 1fr; gap: 14px; font-size: 13.5px; }
+dialog#doc .tags .k {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--red); padding-top: 2px; overflow-wrap: anywhere;
+}
+dialog#doc .tags .v { color: var(--ink-soft); }
+
+/* ── 시그니처: 타입은 흐리게, 이름이 먼저 눈에 들어오게 ─────────────── */
+
+.matrix.api td.sig button .ty { color: var(--ink-faint); font-weight: 400; }
+.matrix.api td.sig button { white-space: normal; text-align: left; line-height: 1.5; }
+.matrix.api td.sig { white-space: normal; }
+
+/* ── 찾기 ──────────────────────────────────────────────────────────── */
+
+.filters input[type="search"] {
+  font-family: var(--sans); font-size: 12.5px; color: var(--ink);
+  padding: 5px 10px; min-width: 190px; flex: 1 1 190px; max-width: 320px;
+  background: var(--paper); border: 1px solid var(--rule);
+}
+.filters input[type="search"]:focus-visible { outline: 2px solid var(--red); outline-offset: 1px; }
+.filters input[type="search"]::placeholder { color: var(--ink-faint); }
+.matrix.api mark { background: rgba(205, 34, 50, .16); color: inherit; padding: 0 1px; }
+.empty {
+  padding: 18px 16px; color: var(--ink-faint); font-size: 13px;
+  border: 1px dashed var(--rule); background: var(--surface);
+}
+
+/* ── 문서 안의 상호 참조 ───────────────────────────────────────────── */
+
+.xref {
+  font-family: var(--mono); font-size: .875em; background: var(--surface-2);
+  padding: 1px 5px; color: var(--ink); border: 0; border-bottom: 1px dotted var(--red);
+  cursor: pointer;
+}
+.xref:hover { color: var(--red); }
+.xref:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+/* ── 코드 복사 ─────────────────────────────────────────────────────── */
+
+.code .cap .tabs button.copy { margin-left: 10px; border-left: 1px solid var(--rule); }
+.code .cap .tabs button.copy[data-done] { color: var(--green, #00875A); }
+
+/* ── 상수 ──────────────────────────────────────────────────────────── */
+
+.cgroup { margin: 0 0 22px; scroll-margin-top: 16px; }
+.cgroup h4 {
+  font-size: 14px; margin: 0 0 8px; display: flex; flex-wrap: wrap;
+  align-items: baseline; gap: 4px 12px;
+}
+.cgroup h4 code { background: none; padding: 0; font-size: 13.5px; }
+.cgroup h4 .sub { font-weight: 400; font-size: 12.5px; color: var(--ink-faint); }
+.matrix.consts td { white-space: normal; vertical-align: baseline; }
+.matrix.consts td.cname { width: 1%; white-space: nowrap; }
+.matrix.consts td.cname code { background: none; padding: 0; font-weight: 500; }
+.matrix.consts td.cval { width: 1%; white-space: nowrap; }
+.matrix.consts td.cval code { background: none; padding: 0; color: var(--navy); }
+.matrix.consts td.cmean { color: var(--ink-soft); font-size: 13px; }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ktmark" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="10.8%" stop-color="#E44857"/><stop offset="21.4%" stop-color="#C711E1"/><stop offset="77.5%" stop-color="#7F52FF"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="flag-us" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0"/>
+  <path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/>
+  <path fill="#192f5d" d="M0 0h364.8v258.5H0"/>
+  <marker id="us-a" markerHeight="30" markerWidth="30">
+    <path fill="#fff" d="m14 0 9 27L0 10h28L5 27z"/>
+  </marker>
+  <path fill="none" marker-mid="url(#us-a)" d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"/></symbol><symbol id="flag-kr" viewBox="0 0 640 480"><defs>
+    <clipPath id="kr-a">
+      <path fill-opacity=".7" d="M-95.8-.4h682.7v512H-95.8z"/>
+    </clipPath>
+  </defs>
+  <g fill-rule="evenodd" clip-path="url(#kr-a)" transform="translate(89.8 .4)scale(.9375)">
+    <path fill="#fff" d="M-95.8-.4H587v512H-95.8Z"/>
+    <g transform="rotate(-56.3 361.6 -101.3)scale(10.66667)">
+      <g id="kr-c">
+        <path id="kr-b" fill="#000001" d="M-6-26H6v2H-6Zm0 3H6v2H-6Zm0 3H6v2H-6Z"/>
+        <use xlink:href="#kr-b" width="100%" height="100%" y="44"/>
+      </g>
+      <path stroke="#fff" d="M0 17v10"/>
+      <path fill="#cd2e3a" d="M0-12a12 12 0 0 1 0 24Z"/>
+      <path fill="#0047a0" d="M0-12a12 12 0 0 0 0 24A6 6 0 0 0 0 0Z"/>
+      <circle cy="-6" r="6" fill="#cd2e3a"/>
+    </g>
+    <g transform="rotate(-123.7 191.2 62.2)scale(10.66667)">
+      <use xlink:href="#kr-c" width="100%" height="100%"/>
+      <path stroke="#fff" d="M0-23.5v3M0 17v3.5m0 3v3"/>
+    </g>
+  </g></symbol></svg>
+<div class="shell">
+
+  <nav class="rail">
+    <div class="brand">
+      <span class="name">Point Mobile SDK</span>
+      <span class="meta"><span>Android</span><span class="dot"></span><span>Maven</span></span>
+    </div>
+    <div class="toc"><a href="#sdks" data-i18n="gs.nav.sdks">Available SDKs</a><a href="#maven" data-i18n="gs.nav.maven">Maven repository</a><a href="#files" data-i18n="gs.nav.files">Install from a file</a><a href="#trouble" data-i18n="gs.nav.trouble">If Gradle sync fails</a></div>
+  </nav>
+
+  <main class="main">
+
+    <header class="masthead">
+      <div class="eyebrow"><span data-i18n="gs.eyebrow">Point Mobile SDK</span></div>
+      <h1 data-i18n="gs.h1">SDK Installation Guide</h1>
+      <p class="lede" data-i18n="gs.lede">Point Mobile SDKs are distributed through a private Maven repository. This guide shows how to add one to your Android project with the access token you get from the Point Mobile portal. For API details, see each SDK's reference.</p>
+    </header>
+
+    <section id="start">
+      <h2 data-i18n="gs.h2">Installation</h2>
+      <h3 id="sdks" data-i18n="gs.h3.sdks">Available SDKs</h3>
+      <p data-i18n="gs.sdks.p">Add each SDK with a single dependency declaration. Find the SDK you need below and use its dependency in step 3.</p>
+      <div class="matrix-wrap"><table class="matrix consts"><thead><tr><th data-i18n="gs.th.sdk">SDK</th><th data-i18n="gs.th.dep">Dependency</th><th data-i18n="gs.th.doc">Reference</th></tr></thead><tbody><tr><td class="cmean" data-i18n="gs.sdk.rfid">RFID SDK (RF88 and the built-in MF52 reader)</td><td class="cname"><code>ex.dev.sdk:rfid:1.0.1</code></td><td class="cname"><code>sdk-reference.html</code></td></tr></tbody></table></div>
+
+      <h3 id="maven" data-i18n="gs.h3.maven">Install from the Maven repository</h3>
+      <p data-i18n="gs.maven">Access to the private repository requires an access token from the Point Mobile portal. Follow these three steps to configure it.</p>
+
+      <p data-i18n="gs.step1"><strong>Step 1: Add your access token</strong><br>Open <code>local.properties</code> in your project's root directory (the file containing <code>sdk.dir</code>) and add your token as shown below. Android Studio's default <code>.gitignore</code> excludes this file from version control. On a build server, set the <code>ORG_GRADLE_PROJECT_pointmobileMavenToken</code> environment variable instead.</p>
+      <div class="code">
+        <div class="cap"><span>local.properties</span><span>Properties</span></div>
+<pre><span class="cm"># Add your token below the existing sdk.dir line.</span>
+<span class="kw">pointmobileMavenToken</span>=<span class="st">&lt;your token&gt;</span></pre>
+      </div>
+
+      <p data-i18n="gs.step2"><strong>Step 2: Add the repository to <code>settings.gradle.kts</code> or <code>settings.gradle</code></strong><br>Place the token lookup code above the <code>dependencyResolutionManagement</code> block and the <code>maven { … }</code> block inside its <code>repositories</code> block. With Kotlin DSL, also add the import at the top of the file. The code reads the token from <code>local.properties</code> first, then checks the Gradle property of the same name. If neither contains a token, Gradle sync stops with a missing-token error.</p>
+      <div class="code" data-tabs="gradle">
+        <div class="cap">
+          <span>settings.gradle(.kts)</span>
+          <span class="tabs">
+            <button type="button" data-tab="kts" aria-pressed="true"><svg class="lang-mark" viewBox="0 0 60 60" width="14" height="14" aria-hidden="true"><path d="M60 60H0V0h60L30 30z" fill="url(#ktmark)"/></svg>Kotlin DSL</button>
+            <button type="button" data-tab="groovy" aria-pressed="false"><svg class="lang-mark" viewBox="0 0 60 60" width="14" height="14" aria-hidden="true"><path d="M30 3l6.47 18.1 19.21.56-15.22 11.74 5.41 18.44L30 41 14.13 51.84l5.41-18.44L4.32 21.66l19.21-.56z" fill="#4298B8"/></svg>Groovy</button>
+            <button type="button" class="copy" data-copy data-i18n="code.copy" data-i18n-aria="code.copy">Copy</button>
+          </span>
+        </div>
+<pre data-tab="kts"><span class="cm">// Add this import at the top of the file.</span>
+<span class="kw">import</span> java.util.<span class="ty">Properties</span>
+
+<span class="cm">// Your existing pluginManagement { … } and plugins { … } blocks stay above this.</span>
+
+<span class="cm">// Reads the token from local.properties, or from the Gradle property of the same name.</span>
+<span class="cm">// On a build server, set the ORG_GRADLE_PROJECT_pointmobileMavenToken environment variable.</span>
+<span class="kw">val</span> localProperties = <span class="ty">Properties</span>().<span class="fn">apply</span> {
+    <span class="kw">val</span> file = settingsDir.<span class="fn">resolve</span>(<span class="st">"local.properties"</span>)
+    <span class="kw">if</span> (file.isFile) file.<span class="fn">inputStream</span>().<span class="fn">use</span> { <span class="fn">load</span>(it) }
+}
+<span class="kw">val</span> pointmobileMavenToken: <span class="ty">String</span> =
+    (localProperties.<span class="fn">getProperty</span>(<span class="st">"pointmobileMavenToken"</span>)
+        ?: providers.<span class="fn">gradleProperty</span>(<span class="st">"pointmobileMavenToken"</span>).orNull)
+        ?.<span class="fn">trim</span>()?.<span class="fn">takeIf</span> { it.<span class="fn">isNotEmpty</span>() }
+        ?: <span class="kw">throw</span> <span class="ty">GradleException</span>(<span class="st">"Add pointmobileMavenToken=&lt;your token&gt; to local.properties."</span>)
+
+<span class="fn">dependencyResolutionManagement</span> {
+    <span class="fn">repositories</span> {
+        <span class="fn">google</span>()
+        <span class="fn">mavenCentral</span>()
+        <span class="cm">// Add the Point Mobile Maven repository, using the token read above.</span>
+        <span class="fn">maven</span> {
+            url = <span class="fn">uri</span>(<span class="st">"https://raw.githubusercontent.com/PointMobileSDD/maven/master"</span>)
+            <span class="fn">credentials</span>(<span class="ty">HttpHeaderCredentials</span>::<span class="kw">class</span>.java) {
+                name = <span class="st">"Authorization"</span>
+                value = <span class="st">"token </span><span class="va">$pointmobileMavenToken</span><span class="st">"</span>
+            }
+            <span class="fn">authentication</span> { create&lt;<span class="ty">HttpHeaderAuthentication</span>&gt;(<span class="st">"header"</span>) }
+        }
+    }
+}</pre>
+<pre data-tab="groovy" hidden><span class="cm">// Your existing pluginManagement { … } and plugins { … } blocks stay above this.</span>
+
+<span class="cm">// Reads the token from local.properties, or from the Gradle property of the same name.</span>
+<span class="cm">// On a build server, set the ORG_GRADLE_PROJECT_pointmobileMavenToken environment variable.</span>
+<span class="kw">def</span> localProperties = <span class="kw">new</span> <span class="ty">Properties</span>()
+<span class="kw">def</span> localFile = <span class="kw">new</span> <span class="ty">File</span>(rootDir, <span class="st">'local.properties'</span>)
+<span class="kw">if</span> (localFile.<span class="fn">isFile</span>()) localFile.<span class="fn">withInputStream</span> { localProperties.<span class="fn">load</span>(it) }
+<span class="kw">def</span> pointmobileMavenToken = (localProperties.<span class="fn">getProperty</span>(<span class="st">'pointmobileMavenToken'</span>)
+        ?: providers.<span class="fn">gradleProperty</span>(<span class="st">'pointmobileMavenToken'</span>).<span class="fn">getOrNull</span>())?.<span class="fn">trim</span>()
+<span class="fn">if</span> (!pointmobileMavenToken) {
+    throw new <span class="ty">GradleException</span>(<span class="st">'Add pointmobileMavenToken=&lt;your token&gt; to local.properties.'</span>)
+}
+
+<span class="fn">dependencyResolutionManagement</span> {
+    <span class="fn">repositories</span> {
+        <span class="fn">google</span>()
+        <span class="fn">mavenCentral</span>()
+        <span class="cm">// Add the Point Mobile Maven repository, using the token read above.</span>
+        <span class="fn">maven</span> {
+            url = <span class="st">'https://raw.githubusercontent.com/PointMobileSDD/maven/master'</span>
+            <span class="fn">credentials</span>(<span class="ty">HttpHeaderCredentials</span>) {
+                name = <span class="st">'Authorization'</span>
+                value = <span class="st">"token <span class="va">$pointmobileMavenToken</span>"</span>
+            }
+            <span class="fn">authentication</span> {
+                <span class="fn">header</span>(<span class="ty">HttpHeaderAuthentication</span>)
+            }
+        }
+    }
+}</pre>
+      </div>
+
+      <div class="note">
+        <p data-i18n="gs.allprojects">Older projects may declare repositories in the root <code>build.gradle</code> under <code>allprojects { repositories { … } }</code>. In that case, add the Groovy code to that file instead: the token lookup above the <code>allprojects</code> block, and the <code>maven { … }</code> block inside its <code>repositories</code>.</p>
+      </div>
+
+      <p data-i18n="gs.step3"><strong>Step 3: Add the SDK to <code>app/build.gradle.kts</code> or <code>app/build.gradle</code></strong><br>On the next Gradle sync, Gradle downloads the SDK and its dependencies.</p>
+      <div class="code" data-tabs="gradle">
+        <div class="cap">
+          <span>app/build.gradle(.kts)</span>
+          <span class="tabs">
+            <button type="button" data-tab="kts" aria-pressed="true"><svg class="lang-mark" viewBox="0 0 60 60" width="14" height="14" aria-hidden="true"><path d="M60 60H0V0h60L30 30z" fill="url(#ktmark)"/></svg>Kotlin DSL</button>
+            <button type="button" data-tab="groovy" aria-pressed="false"><svg class="lang-mark" viewBox="0 0 60 60" width="14" height="14" aria-hidden="true"><path d="M30 3l6.47 18.1 19.21.56-15.22 11.74 5.41 18.44L30 41 14.13 51.84l5.41-18.44L4.32 21.66l19.21-.56z" fill="#4298B8"/></svg>Groovy</button>
+            <button type="button" class="copy" data-copy data-i18n="code.copy" data-i18n-aria="code.copy">Copy</button>
+          </span>
+        </div>
+<pre data-tab="kts"><span class="fn">dependencies</span> {
+    <span class="cm">// Add the SDK you need. See the table above for its dependency.</span>
+    <span class="fn">implementation</span>(<span class="st">"ex.dev.sdk:rfid:1.0.1"</span>)
+}</pre>
+<pre data-tab="groovy" hidden><span class="fn">dependencies</span> {
+    <span class="cm">// Add the SDK you need. See the table above for its dependency.</span>
+    implementation <span class="st">'ex.dev.sdk:rfid:1.0.1'</span>
+}</pre>
+      </div>
+
+      <div class="note">
+        <p data-i18n="gs.token"><strong>Do not store your token in files tracked by version control.</strong> If you store it in a file such as <code>settings.gradle.kts</code>, anyone with access to that file can use the token to download the SDK.</p>
+      </div>
+
+      <h3 id="files" data-i18n="gs.h3.files">Install from a file</h3>
+      <p data-i18n="gs.files.p">If you downloaded the SDK as a file from the Point Mobile portal, copy it to <code>app/libs/</code> and add a dependency using its filename.</p>
+      <div class="code" data-tabs="gradle">
+        <div class="cap">
+          <span>app/build.gradle(.kts)</span>
+          <span class="tabs">
+            <button type="button" data-tab="kts" aria-pressed="true"><svg class="lang-mark" viewBox="0 0 60 60" width="14" height="14" aria-hidden="true"><path d="M60 60H0V0h60L30 30z" fill="url(#ktmark)"/></svg>Kotlin DSL</button>
+            <button type="button" data-tab="groovy" aria-pressed="false"><svg class="lang-mark" viewBox="0 0 60 60" width="14" height="14" aria-hidden="true"><path d="M30 3l6.47 18.1 19.21.56-15.22 11.74 5.41 18.44L30 41 14.13 51.84l5.41-18.44L4.32 21.66l19.21-.56z" fill="#4298B8"/></svg>Groovy</button>
+            <button type="button" class="copy" data-copy data-i18n="code.copy" data-i18n-aria="code.copy">Copy</button>
+          </span>
+        </div>
+<pre data-tab="kts"><span class="fn">dependencies</span> {
+    <span class="cm">// Copy the file from the portal into app/libs/ and use its name here.</span>
+    <span class="fn">implementation</span>(<span class="fn">files</span>(<span class="st">"libs/ex.dev.sdk.rfid_1.0.1.aar"</span>))
+}</pre>
+<pre data-tab="groovy" hidden><span class="fn">dependencies</span> {
+    <span class="cm">// Copy the file from the portal into app/libs/ and use its name here.</span>
+    implementation <span class="fn">files</span>(<span class="st">'libs/ex.dev.sdk.rfid_1.0.1.aar'</span>)
+}</pre>
+      </div>
+
+      <div class="note">
+        <p data-i18n="gs.files.note"><strong>Installing the SDK from a file does not automatically add its dependencies.</strong> Add the libraries listed in the SDK reference manually. For example, a Java-only app that uses the RFID SDK also needs the Kotlin standard library.</p>
+      </div>
+
+      <h3 id="trouble" data-i18n="gs.h3.trouble">If Gradle sync fails</h3>
+      <div class="note">
+        <p data-i18n="gs.trouble.token"><strong>"Add pointmobileMavenToken=… to local.properties"</strong><br>Gradle couldn't find your token. Make sure <code>local.properties</code> in your project's root directory has a <code>pointmobileMavenToken</code> line.</p>
+      </div>
+      <div class="note">
+        <p data-i18n="gs.trouble.find"><strong>"Could not find ex.dev.sdk:…"</strong><br>This can occur if the repository rejects your token or the requested version does not exist. Check that you copied the entire token, that it has not expired, and that the version matches the table above.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+<script id="api-lang" type="application/json">{"en": {"lang.pick": "Choose a language", "code.copied": "Copied", "code.copy": "Copy", "gs.maven": "Access to the private repository requires an access token from the Point Mobile portal. Follow these three steps to configure it.", "gs.step1": "<strong>Step 1: Add your access token</strong><br>Open <code>local.properties</code> in your project's root directory (the file containing <code>sdk.dir</code>) and add your token as shown below. Android Studio's default <code>.gitignore</code> excludes this file from version control. On a build server, set the <code>ORG_GRADLE_PROJECT_pointmobileMavenToken</code> environment variable instead.", "gs.step2": "<strong>Step 2: Add the repository to <code>settings.gradle.kts</code> or <code>settings.gradle</code></strong><br>Place the token lookup code above the <code>dependencyResolutionManagement</code> block and the <code>maven { … }</code> block inside its <code>repositories</code> block. With Kotlin DSL, also add the import at the top of the file. The code reads the token from <code>local.properties</code> first, then checks the Gradle property of the same name. If neither contains a token, Gradle sync stops with a missing-token error.", "gs.allprojects": "Older projects may declare repositories in the root <code>build.gradle</code> under <code>allprojects { repositories { … } }</code>. In that case, add the Groovy code to that file instead: the token lookup above the <code>allprojects</code> block, and the <code>maven { … }</code> block inside its <code>repositories</code>.", "gs.token": "<strong>Do not store your token in files tracked by version control.</strong> If you store it in a file such as <code>settings.gradle.kts</code>, anyone with access to that file can use the token to download the SDK.", "gs.eyebrow": "Point Mobile SDK", "gs.h1": "SDK Installation Guide", "gs.lede": "Point Mobile SDKs are distributed through a private Maven repository. This guide shows how to add one to your Android project with the access token you get from the Point Mobile portal. For API details, see each SDK's reference.", "gs.h2": "Installation", "gs.nav.sdks": "Available SDKs", "gs.nav.maven": "Maven repository", "gs.nav.files": "Install from a file", "gs.nav.trouble": "If Gradle sync fails", "gs.h3.sdks": "Available SDKs", "gs.sdks.p": "Add each SDK with a single dependency declaration. Find the SDK you need below and use its dependency in step 3.", "gs.th.sdk": "SDK", "gs.th.dep": "Dependency", "gs.th.doc": "Reference", "gs.sdk.rfid": "RFID SDK (RF88 and the built-in MF52 reader)", "gs.h3.maven": "Install from the Maven repository", "gs.step3": "<strong>Step 3: Add the SDK to <code>app/build.gradle.kts</code> or <code>app/build.gradle</code></strong><br>On the next Gradle sync, Gradle downloads the SDK and its dependencies.", "gs.h3.files": "Install from a file", "gs.files.p": "If you downloaded the SDK as a file from the Point Mobile portal, copy it to <code>app/libs/</code> and add a dependency using its filename.", "gs.files.note": "<strong>Installing the SDK from a file does not automatically add its dependencies.</strong> Add the libraries listed in the SDK reference manually. For example, a Java-only app that uses the RFID SDK also needs the Kotlin standard library.", "gs.h3.trouble": "If Gradle sync fails", "gs.trouble.token": "<strong>\"Add pointmobileMavenToken=… to local.properties\"</strong><br>Gradle couldn't find your token. Make sure <code>local.properties</code> in your project's root directory has a <code>pointmobileMavenToken</code> line.", "gs.trouble.find": "<strong>\"Could not find ex.dev.sdk:…\"</strong><br>This can occur if the repository rejects your token or the requested version does not exist. Check that you copied the entire token, that it has not expired, and that the version matches the table above."}}</script>
+<script>
+(function () {
+  // ── 언어 ─────────────────────────────────────────────────────────
+  var LANG = JSON.parse(document.getElementById("api-lang").textContent);
+  var lang = "en";
+
+  function setLang(next) {
+    lang = LANG[next] ? next : "en";
+    var dict = LANG[lang];
+    document.documentElement.setAttribute("data-ui-lang", lang);
+    document.documentElement.setAttribute("lang", lang);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"), function (el) {
+      var v = dict[el.getAttribute("data-i18n")];
+      if (v != null) el.innerHTML = v;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-i18n-aria]"), function (el) {
+      var v = dict[el.getAttribute("data-i18n-aria")];
+      if (v != null) el.setAttribute("aria-label", v);
+    });
+  }
+
+
+
+  // ── 코드 복사 ─────────────────────────────────────────────────────
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest("button[data-copy]") : null;
+    if (!b) return;
+    var box = b.closest(".code");
+    var pre = box.querySelector("pre[data-tab]:not([hidden])") || box.querySelector("pre");
+    var text = pre ? pre.textContent : "";
+    function done() {
+      b.setAttribute("data-done", "1");
+      b.textContent = LANG[lang]["code.copied"] || "Copied";
+      setTimeout(function () {
+        b.removeAttribute("data-done");
+        b.textContent = LANG[lang]["code.copy"] || "Copy";
+      }, 1400);
+    }
+    function fallback() {
+      // file:// 로 열면 클립보드 API 가 막힐 수 있다.
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(); } catch (err) { /* 손으로 긁어 갈 수 있다 */ }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  // ── 코드 예시 탭 ─────────────────────────────────────────────────
+  // 같은 종류(data-tabs 값)의 코드 칸은 함께 바뀌고, 고른 값은 종류마다 따로 저장한다.
+  function tabKey(kind) { return kind ? "rfid-doc-codelang-" + kind : "rfid-doc-codelang"; }
+  function pickTab(kind, want) {
+    Array.prototype.forEach.call(document.querySelectorAll('.code[data-tabs="' + kind + '"]'), function (box) {
+      if (!box.querySelector('pre[data-tab="' + want + '"]')) return;
+      Array.prototype.forEach.call(box.querySelectorAll("pre[data-tab]"), function (pre) {
+        pre.hidden = pre.getAttribute("data-tab") !== want;
+      });
+      Array.prototype.forEach.call(box.querySelectorAll("button[data-tab]"), function (t) {
+        t.setAttribute("aria-pressed", String(t.getAttribute("data-tab") === want));
+      });
+    });
+  }
+  var tabKinds = {};
+  Array.prototype.forEach.call(document.querySelectorAll(".code[data-tabs]"), function (box) {
+    var kind = box.getAttribute("data-tabs") || "";
+    tabKinds[kind] = true;
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("button[data-tab]") : null;
+      if (!b) return;
+      var want = b.getAttribute("data-tab");
+      pickTab(kind, want);
+      try { localStorage.setItem(tabKey(kind), want); } catch (err) { /* 접근이 막힌 환경 */ }
+    });
+  });
+  Object.keys(tabKinds).forEach(function (kind) {
+    try {
+      var saved = localStorage.getItem(tabKey(kind));
+      if (saved) pickTab(kind, saved);
+    } catch (err) { /* 저장된 값이 없으면 첫 탭이 기본이다 */ }
+  });
+
+  setLang(lang);
+})();
+</script>

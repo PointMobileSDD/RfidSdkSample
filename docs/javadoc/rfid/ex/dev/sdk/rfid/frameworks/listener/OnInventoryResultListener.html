@@ -1,0 +1,513 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>OnInventoryResultListener </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ex.dev.sdk.rfid.frameworks.listener</a></div>
+        <h2 title="Interface OnInventoryResultListener" class="title">Interface OnInventoryResultListener</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public interface <span class="typeNameLabel"><a href=OnInventoryResultListener.html>OnInventoryResultListener</a></span>
+
+                    </pre>
+                    <div class="block"><p>Tags seen during inventory.</p><p>Readers: RF88 · MF52. <a href=OnInventoryResultListener.html#onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>onInventoryDiscovered</a> comes from both; <a href=OnInventoryResultListener.html#onInventoryAndReadDiscovered(java.lang.String,java.lang.String,java.lang.String)>onInventoryAndReadDiscovered</a> only ever from the RF88, because only the RF88 reads during inventory.</p><p>A reader that cannot supply a value supplies an empty string, never null. The MF52 has no carrier frequency to report; the RF88 carries RSSI, frequency and checksum only when <code>RfidManager.setPacketOption</code> asks for them. Branch on <code>isEmpty()</code>, and do not read an empty field as a measured zero.</p><p>Fires on an SDK thread — not the caller's, not the main thread. Marshal to your own thread if your UI needs it. Calling back into the SDK from here is allowed.</p><p>Return quickly. Reports and the other host callbacks are delivered one at a time on the SDK callback thread, so time spent here delays everything queued behind it. It does not block the reader's protocol callback thread. Hand expensive work to your own thread and come back.</p></div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=OnInventoryResultListener.html#onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>onInventoryDiscovered</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> data, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ascii, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> rssi, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> frequency, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> checksum) </code>
+                                            </th>
+                                            <td class="colLast">A tag was observed.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=OnInventoryResultListener.html#onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>onInventoryDiscovered</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> epc, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ascii, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> rssi, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> frequency, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> crc, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pc) </code>
+                                            </th>
+                                            <td class="colLast">Reports a detected tag, including the PC word in addition to the five-argument callback values.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=OnInventoryResultListener.html#onInventoryAndReadDiscovered(java.lang.String,java.lang.String,java.lang.String)>onInventoryAndReadDiscovered</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> data, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ascii, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> readData) </code>
+                                            </th>
+                                            <td class="colLast">A tag was observed together with a read performed in the same operation.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>onInventoryDiscovered</h4>
+                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a> <a href=OnInventoryResultListener.html#onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>onInventoryDiscovered</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> data, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ascii, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> rssi, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> frequency, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> checksum)</pre>
+                                        <div class="block"><p>A tag was observed.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>data</code> - EPC as uppercase hex.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>ascii</code> - <a href=OnInventoryResultListener.html#onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>data</a> decoded as printable ASCII, non-printable bytes shown as <code>.</code>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>rssi</code> - Signal strength in dBm, signed — the RF88 reports one decimal place (<code>-32.4</code>),                  the MF52 a whole number (<code>-65</code>).</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>frequency</code> - Carrier frequency the tag was read on, in MHz to three decimal places                  (<code>&quot;926.750&quot;</code>).</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>checksum</code> - The check value that came with this read.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>onInventoryDiscovered</h4>
+                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a> <a href=OnInventoryResultListener.html#onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>onInventoryDiscovered</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> epc, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ascii, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> rssi, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> frequency, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> crc, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pc)</pre>
+                                        <div class="block"><p>Reports a detected tag, including the PC word in addition to the five-argument callback values.</p><p>Override this one or the one above, not both. The SDK calls this one and nothing else. Its default implementation passes the same values on to the five-argument form, so a host written against that one keeps working and never sees this method.</p><p>The first five parameters match the values delivered by the five-argument overload. The names <code>epc</code> and <code>crc</code> clarify the meanings of the older <code>data</code> and <code>checksum</code> parameters.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>epc</code> - The EPC as uppercase hex, and only the EPC.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>ascii</code> - <a href=OnInventoryResultListener.html#onInventoryDiscovered(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>epc</a> decoded as printable ASCII, non-printable bytes shown as <code>.</code>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>rssi</code> - Signal strength in dBm — as in the five-argument form.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>frequency</code> - Carrier frequency the tag was read on — as in the five-argument form.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>crc</code> - The tag's CRC that came with this read — the value the five-argument form calls                   <code>checksum</code>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>pc</code> - The tag's PC word as four hex digits: the Gen2 protocol control word, which states                   among other things how long the EPC is.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="onInventoryAndReadDiscovered(java.lang.String,java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>onInventoryAndReadDiscovered</h4>
+                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a> <a href=OnInventoryResultListener.html#onInventoryAndReadDiscovered(java.lang.String,java.lang.String,java.lang.String)>onInventoryAndReadDiscovered</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> data, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ascii, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> readData)</pre>
+                                        <div class="block"><p>A tag was observed together with a read performed in the same operation.</p><p>Readers: RF88 only — it is the only one with an inventory-and-read command. The MF52 does not support <code>RfidManager.inventoryAndRead</code> and does not emit this event.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>data</code> - EPC as uppercase hex.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>ascii</code> - <a href=OnInventoryResultListener.html#onInventoryAndReadDiscovered(java.lang.String,java.lang.String,java.lang.String)>data</a> decoded as printable ASCII, non-printable bytes shown as <code>.</code>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>readData</code> - Payload of the read, as hex.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

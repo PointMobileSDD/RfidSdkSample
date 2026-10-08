@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <!--
+        Discovery rode on location before Android 12, and it is not capped at API 30 here: some
+        devices still want location on 12 and up before startDiscovery() will run. Without it the
+        call answers false and no broadcast ever arrives, which reads as "found nothing".
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RfidSample">
+        <activity
+            android:name=".rf88.Rf88MenuActivity"
+            android:exported="false"
+            android:label="@string/rf88_title" />
+
+        <activity
+            android:name=".rf88.Rf88BluetoothConnectActivity"
+            android:exported="false"
+            android:label="@string/rf88_bt_title" />
+
+        <activity
+            android:name=".rf88.Rf88WiredConnectActivity"
+            android:exported="false"
+            android:label="@string/rf88_wired_title" />
+
+        <!--
+            No NFC intent-filter, deliberately. Android handles a Bluetooth out-of-band record itself
+            as a peripheral handover before any app's filter is consulted, so one would never fire.
+            The screen claims the tap with enableForegroundDispatch instead, which takes priority.
+        -->
+        <activity
+            android:name=".rf88.Rf88NfcPairingActivity"
+            android:exported="false"
+            android:label="@string/rf88_nfc_title" />
+
+        <activity
+            android:name=".rf88.Rf88InventoryActivity"
+            android:exported="false"
+            android:label="@string/rf88_inventory_title" />
+
+        <activity
+            android:name=".rf88.Rf88InventoryAndReadActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/rf88_nread_title" />
+
+        <activity
+            android:name=".rf88.Rf88AccessActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/rf88_access_title" />
+
+        <activity
+            android:name=".rf88.Rf88SettingsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/rf88_settings_title" />
+
+        <activity
+            android:name=".rf88.Rf88DeviceInfoActivity"
+            android:exported="false"
+            android:label="@string/rf88_info_title" />
+
+        <activity
+            android:name=".mf52.Mf52MenuActivity"
+            android:exported="false"
+            android:label="@string/mf52_title" />
+
+        <activity
+            android:name=".mf52.Mf52SettingsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/settings_title" />
+
+        <activity
+            android:name=".mf52.Mf52AccessActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/access_title" />
+
+        <activity
+            android:name=".mf52.Mf52InventoryActivity"
+            android:exported="false"
+            android:label="@string/inv_title" />
+
+        <activity
+            android:name=".mf52.Mf52ConnectActivity"
+            android:exported="false"
+            android:label="@string/mf52_title" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,128 @@
+<resources>
+
+    <!--
+        Light only. A sample that renders the same on every handheld is easier to screenshot
+        and to talk about in a support thread, so there is no values-night/ counterpart.
+    -->
+    <style name="Theme.RfidSample" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/pm_red</item>
+        <item name="colorOnPrimary">@color/pm_text_on_red</item>
+        <item name="colorPrimaryContainer">@color/pm_red_tint</item>
+        <item name="colorOnPrimaryContainer">@color/pm_text_primary</item>
+        <!--
+            Material3 fills a dropdown popup and its selected row from the secondary and surface
+            container roles. Left undefined they come back as the framework's purple, which turns up
+            inside an otherwise red app the moment a picker opens.
+        -->
+        <item name="colorSecondary">@color/pm_red</item>
+        <item name="colorSecondaryContainer">@color/pm_red_tint_strong</item>
+        <item name="colorOnSecondaryContainer">@color/pm_text_primary</item>
+        <item name="colorSurfaceContainer">@color/pm_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/pm_surface</item>
+        <item name="colorError">@color/pm_error</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="android:colorBackground">@color/pm_background</item>
+        <item name="colorSurface">@color/pm_surface</item>
+        <item name="colorOnSurface">@color/pm_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/pm_text_secondary</item>
+        <item name="colorOutline">@color/pm_divider</item>
+        <item name="android:statusBarColor">@color/pm_red</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!--
+            Let the header's red run under the navigation bar instead of sitting next to a tinted
+            strip of it. On a handheld held sideways the bar moves to one edge, and the default
+            scrim washes the red out where it lands.
+        -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:enforceStatusBarContrast">false</item>
+    </style>
+
+    <!-- Filled action. The screen's main verb: Connect, Read, Write. -->
+    <style name="Widget.RfidSample.Button" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/button_fill</item>
+        <item name="android:textColor">@color/pm_text_on_red</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!-- Outlined action. Anything that undoes or stops what the filled button started. -->
+    <style name="Widget.RfidSample.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/button_outline_text</item>
+        <item name="strokeColor">@color/button_outline_stroke</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!--
+        Form field. Outlined rather than the platform underline: the label sits inside the box, the
+        helper line has somewhere to go, and the focused box picks up the brand colour.
+    -->
+    <style name="Widget.RfidSample.Field" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/field_stroke</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="boxCornerRadiusTopEnd">6dp</item>
+        <item name="boxCornerRadiusBottomStart">6dp</item>
+        <item name="boxCornerRadiusBottomEnd">6dp</item>
+        <item name="hintTextColor">@color/pm_red</item>
+        <item name="android:textColorHint">@color/pm_text_tertiary</item>
+        <item name="helperTextTextColor">@color/pm_text_tertiary</item>
+        <!--
+            The label stays floated even when the field is empty. Letting it drop into the box makes
+            it take the value's monospace face, so half the labels rendered in one face and half in
+            another depending on whether the field happened to be filled.
+        -->
+        <item name="expandedHintEnabled">false</item>
+        <item name="hintTextAppearance">@style/Text.RfidSample.FieldLabel</item>
+    </style>
+
+    <style name="Widget.RfidSample.Field.Dropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/field_stroke</item>
+        <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="boxCornerRadiusTopEnd">6dp</item>
+        <item name="boxCornerRadiusBottomStart">6dp</item>
+        <item name="boxCornerRadiusBottomEnd">6dp</item>
+        <item name="hintTextColor">@color/pm_red</item>
+        <item name="android:textColorHint">@color/pm_text_tertiary</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="hintTextAppearance">@style/Text.RfidSample.FieldLabel</item>
+    </style>
+
+    <!-- Lock and kill. Set apart from Read and Write because neither can be taken back. -->
+    <style name="Widget.RfidSample.Button.Danger" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/pm_error</item>
+        <item name="strokeColor">@color/pm_error</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="Text.RfidSample.FieldLabel" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text.RfidSample.Field" parent="">
+        <item name="android:textColor">@color/pm_text_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="Text.RfidSample.Title" parent="">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/pm_text_primary</item>
+    </style>
+
+    <style name="Text.RfidSample.Caption" parent="">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/pm_text_secondary</item>
+    </style>
+</resources>
