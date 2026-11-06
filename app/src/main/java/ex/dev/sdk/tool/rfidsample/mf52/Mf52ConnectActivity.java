@@ -151,6 +151,9 @@ public class Mf52ConnectActivity extends AppCompatActivity
     public void onConnectionStateChanged(ConnectionState newState, @Nullable String reader) {
         // SLEEP is a connected state: the reader is idle and wakes on the next command. Treating it
         // as a disconnection is the usual mistake here.
+        // A DISCONNECTED this screen did not ask for means the MF52 turned itself off, for example
+        // after some minutes without a command or when the device started charging. Connect again
+        // to use it.
         log("state = " + newState + (reader == null ? "" : " (" + reader + ")"));
         runOnUiThread(() -> showState(newState));
 
@@ -181,11 +184,22 @@ public class Mf52ConnectActivity extends AppCompatActivity
                 logError("connectInternal() = " + outcome + " — "
                         + (holder == null ? "another reader" : holder)
                         + " holds the link, disconnect it first");
-            } else {
+            } else if (ResultCode.UNSUPPORTED.equals(outcome)) {
                 // Not a crash: a device with no MF52 answers this way, and that is the
-                // normal outcome on most models.
-                logError("connectInternal() = " + outcome
-                        + " — no MF52 on this device, or it is already in use");
+                // normal outcome on most models. An MF52 whose reader software this SDK
+                // version does not support answers the same.
+                logError("connectInternal() = " + outcome + " — no MF52 on this device,"
+                        + " or this SDK version does not support its reader software");
+            } else if (ResultCode.LICENSE_ERROR.equals(outcome)) {
+                // The reader is there but refuses to come up. The license listener has
+                // already been told INVALID or REVOKED, unless licensed use is turned off.
+                logError("connectInternal() = " + outcome + " — the reader has no valid license,"
+                        + " or licensed use is turned off on this device");
+            } else {
+                // The MF52 does not come up while the device is charging, and the USB cable used
+                // for debugging charges it.
+                logError("connectInternal() = " + outcome + " — the reader did not come up,"
+                        + " for example because the device is charging or another app is using it");
             }
         });
     }

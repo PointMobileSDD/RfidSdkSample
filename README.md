@@ -143,7 +143,7 @@ Kotlin DSL (`app/build.gradle.kts`):
 ```kotlin
 dependencies {
     // Add this line.
-    implementation("ex.dev.sdk:rfid:1.0.1")
+    implementation("ex.dev.sdk:rfid:1.1.0")
 }
 ```
 
@@ -152,7 +152,7 @@ Groovy (`app/build.gradle`):
 ```groovy
 dependencies {
     // Add this line.
-    implementation 'ex.dev.sdk:rfid:1.0.1'
+    implementation 'ex.dev.sdk:rfid:1.1.0'
 }
 ```
 
@@ -167,6 +167,10 @@ repository, it lets anyone who can read that file download the SDK.
 2. Open this folder in Android Studio and let Gradle sync.
 3. Build and install on a device with an RF88 attached, or on one with the MF52 built in.
 4. Pick the reader on the first screen and connect before opening the rest.
+
+The MF52 reader does not come up while the device is charging, and a USB cable to your computer
+charges it. After installing, unplug the cable and then connect the MF52. With the cable in,
+`connectInternal()` returns `E0`.
 
 Only one reader can hold the link at a time. Connecting one while the other is up is refused, and the
 returned code says so.

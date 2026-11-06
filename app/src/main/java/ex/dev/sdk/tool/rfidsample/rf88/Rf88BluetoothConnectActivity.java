@@ -173,10 +173,10 @@ public class Rf88BluetoothConnectActivity extends AppCompatActivity
     public void onConnectionStateChanged(ConnectionState newState, @Nullable String reader) {
         log("state = " + newState + (reader == null ? "" : " (" + reader + ")"));
         runOnUiThread(() -> {
+            // FAILURE is not explained here. The listener replays the current state as soon as it is
+            // registered, so a FAILURE left by an attempt on another screen would read as this one's.
+            // report() explains this screen's own attempts from the code they return.
             showState(newState);
-            detail.setText(newState == ConnectionState.FAILURE
-                    ? "the RF88 did not answer — it may be out of range or held by another app"
-                    : "");
         });
     }
 
@@ -185,6 +185,7 @@ public class Rf88BluetoothConnectActivity extends AppCompatActivity
     private void connect(BluetoothDevice device) {
         String address = device.getAddress();
         stopScan();
+        detail.setText("");
         log("connect(" + address + ")");
         inBackground(() -> {
             // Discovery is the host's business; the SDK takes the address and nothing else.
@@ -212,6 +213,8 @@ public class Rf88BluetoothConnectActivity extends AppCompatActivity
             return;
         }
         logError(call + " = " + outcome + ", state = " + rfidManager.getConnectionState());
+        runOnUiThread(() -> detail.setText(
+                "the RF88 did not answer — it may be out of range or held by another app"));
     }
 
     private void disconnect() {

@@ -93,11 +93,10 @@ public class Mf52SettingsActivity extends AppCompatActivity {
     private static final String[][] LINK_PROFILES = {
             {"0", "80 kbps · PR-ASK · M2"},
             {"3", "40 kbps · PR-ASK · M4"},
-            {"4", "160 kbps · PR-ASK · FM0 · Tari 20000"},
-            {"5", "160 kbps · PR-ASK · FM0 · Tari 25000"},
-            {"6", "160 kbps · DSB-ASK · FM0"},
-            {"8", "80 kbps · DSB-ASK · M2"},
-            {"9", "40 kbps · DSB-ASK · M4"},
+            {"4", "160 kbps · PR-ASK · FM0"},
+            {"5", "160 kbps · DSB-ASK · FM0"},
+            {"7", "80 kbps · DSB-ASK · M2"},
+            {"8", "40 kbps · DSB-ASK · M4"},
     };
 
     private final RfidManager rfidManager = RfidManager.getInstance();

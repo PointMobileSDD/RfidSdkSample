@@ -38,7 +38,7 @@ android {
 
 dependencies {
     // RFID SDK, from the Point Mobile Maven repository declared in settings.gradle.kts.
-    implementation("ex.dev.sdk:rfid:1.0.1")
+    implementation("ex.dev.sdk:rfid:1.1.0")
 
     implementation(libs.activity)
     implementation(libs.appcompat)

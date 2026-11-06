@@ -127,16 +127,17 @@ public class Rf88WiredConnectActivity extends AppCompatActivity
         // wakes on the next command; a screen that closes on it is closing on a working reader.
         log("state = " + newState + (reader == null ? "" : " (" + reader + ")"));
         runOnUiThread(() -> {
+            // FAILURE is not explained here. The listener replays the current state as soon as it is
+            // registered, so a FAILURE left by an attempt on another screen would read as this one's.
+            // report() explains this screen's own attempts from the code they return.
             showState(newState);
-            detail.setText(newState == ConnectionState.FAILURE
-                    ? "no RF88 answered on the wire — check it is seated in the cradle"
-                    : "");
         });
     }
 
     // ── SDK calls ────────────────────────────────────────────────────────────
 
     private void connect() {
+        detail.setText("");
         log("connect()");
         inBackground(() -> {
             // No address: the wired path has exactly one RF88 to talk to.
@@ -164,6 +165,8 @@ public class Rf88WiredConnectActivity extends AppCompatActivity
             return;
         }
         logError(call + " = " + outcome + ", state = " + rfidManager.getConnectionState());
+        runOnUiThread(() -> detail.setText(
+                "no RF88 answered on the wire — check it is seated in the cradle"));
     }
 
     private void disconnect() {
