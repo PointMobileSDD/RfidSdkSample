@@ -143,7 +143,7 @@ Kotlin DSL (`app/build.gradle.kts`):
 ```kotlin
 dependencies {
     // Add this line.
-    implementation("ex.dev.sdk:rfid:1.1.0")
+    implementation("ex.dev.sdk:rfid:1.2.0")
 }
 ```
 
@@ -152,7 +152,7 @@ Groovy (`app/build.gradle`):
 ```groovy
 dependencies {
     // Add this line.
-    implementation 'ex.dev.sdk:rfid:1.1.0'
+    implementation 'ex.dev.sdk:rfid:1.2.0'
 }
 ```
 

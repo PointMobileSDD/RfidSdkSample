@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0
+
+- Uses the SDK `ex.dev.sdk:rfid:1.2.0`. `factoryDefaults()` now works on the MF52 too. It applies
+  the settings a new device starts with and keeps them, so the region goes back to FCC.
+- On the RF88, `factoryDefaults()` returns the failure code when the SDK cannot write back one of
+  its defaults after the reset. If you had changed the packet option, tags read right after the
+  reset now report the correct EPC.
+- `beep()`, `factoryDefaults()` and `factoryDefaultsRfid()` return `E1` (BUSY) while an inventory
+  or a tag operation is running.
+- `sdk-reference.html` and the API docs list each reader's defaults under `factoryDefaults()`.
+
 ## 1.1.0
 
 - Uses the SDK `ex.dev.sdk:rfid:1.1.0`. On an MF52 running a system image built before

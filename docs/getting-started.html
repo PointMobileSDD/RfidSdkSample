@@ -598,7 +598,7 @@ dialog#doc .tags .v { color: var(--ink-soft); }
       <h2 data-i18n="gs.h2">Installation</h2>
       <h3 id="sdks" data-i18n="gs.h3.sdks">Available SDKs</h3>
       <p data-i18n="gs.sdks.p">Add each SDK with a single dependency declaration. Find the SDK you need below and use its dependency in step 3.</p>
-      <div class="matrix-wrap"><table class="matrix consts"><thead><tr><th data-i18n="gs.th.sdk">SDK</th><th data-i18n="gs.th.dep">Dependency</th><th data-i18n="gs.th.doc">Reference</th></tr></thead><tbody><tr><td class="cmean" data-i18n="gs.sdk.rfid">RFID SDK (RF88 and the built-in MF52 reader)</td><td class="cname"><code>ex.dev.sdk:rfid:1.1.0</code></td><td class="cname"><code>sdk-reference.html</code></td></tr></tbody></table></div>
+      <div class="matrix-wrap"><table class="matrix consts"><thead><tr><th data-i18n="gs.th.sdk">SDK</th><th data-i18n="gs.th.dep">Dependency</th><th data-i18n="gs.th.doc">Reference</th></tr></thead><tbody><tr><td class="cmean" data-i18n="gs.sdk.rfid">RFID SDK (RF88 and the built-in MF52 reader)</td><td class="cname"><code>ex.dev.sdk:rfid:1.2.0</code></td><td class="cname"><code>sdk-reference.html</code></td></tr></tbody></table></div>
 
       <h3 id="maven" data-i18n="gs.h3.maven">Install from the Maven repository</h3>
       <p data-i18n="gs.maven">Access to the private repository requires an access token from the Point Mobile portal. Follow these three steps to configure it.</p>
@@ -700,11 +700,11 @@ dialog#doc .tags .v { color: var(--ink-soft); }
         </div>
 <pre data-tab="kts"><span class="fn">dependencies</span> {
     <span class="cm">// Add the SDK you need. See the table above for its dependency.</span>
-    <span class="fn">implementation</span>(<span class="st">"ex.dev.sdk:rfid:1.1.0"</span>)
+    <span class="fn">implementation</span>(<span class="st">"ex.dev.sdk:rfid:1.2.0"</span>)
 }</pre>
 <pre data-tab="groovy" hidden><span class="fn">dependencies</span> {
     <span class="cm">// Add the SDK you need. See the table above for its dependency.</span>
-    implementation <span class="st">'ex.dev.sdk:rfid:1.1.0'</span>
+    implementation <span class="st">'ex.dev.sdk:rfid:1.2.0'</span>
 }</pre>
       </div>
 
@@ -725,11 +725,11 @@ dialog#doc .tags .v { color: var(--ink-soft); }
         </div>
 <pre data-tab="kts"><span class="fn">dependencies</span> {
     <span class="cm">// Copy the file from the portal into app/libs/ and use its name here.</span>
-    <span class="fn">implementation</span>(<span class="fn">files</span>(<span class="st">"libs/ex.dev.sdk.rfid_1.1.0.aar"</span>))
+    <span class="fn">implementation</span>(<span class="fn">files</span>(<span class="st">"libs/ex.dev.sdk.rfid_1.2.0.aar"</span>))
 }</pre>
 <pre data-tab="groovy" hidden><span class="fn">dependencies</span> {
     <span class="cm">// Copy the file from the portal into app/libs/ and use its name here.</span>
-    implementation <span class="fn">files</span>(<span class="st">'libs/ex.dev.sdk.rfid_1.1.0.aar'</span>)
+    implementation <span class="fn">files</span>(<span class="st">'libs/ex.dev.sdk.rfid_1.2.0.aar'</span>)
 }</pre>
       </div>
 

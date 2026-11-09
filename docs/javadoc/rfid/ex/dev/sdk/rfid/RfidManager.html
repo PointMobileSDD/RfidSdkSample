@@ -1226,7 +1226,7 @@ UNCHECKED</code> before the license state has been queried.</td>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=RfidManager.html#factoryDefaults()>factoryDefaults</a>() </code>
                                             </th>
-                                            <td class="colLast">Returns the reader to its factory settings, then re-applies this SDK's own defaults.</td>
+                                            <td class="colLast">Returns every setting of the reader to its default value.</td>
                                         </tr>
                                         
                                         <tr id="i120" class="altColor">
@@ -5069,7 +5069,19 @@ UNCHECKED</code> before the license state has been queried. </p><p>Readers: MF52
                                     <li class="blockList">
                                         <h4>factoryDefaults</h4>
                                         <pre class="methodSignature">@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/WorkerThread.html>WorkerThread</a>()@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=RfidManager.html#factoryDefaults()>factoryDefaults</a>()</pre>
-                                        <div class="block"><p>Returns the reader to its factory settings, then re-applies this SDK's own defaults. </p><p>All configured settings are reset, including transmit power, region, and Q. After restoring the reader's factory settings, the SDK reapplies its own default configuration. </p><p>This operation can take several seconds. The reader cannot accept other operations until it completes.</p><p>Readers: RF88 only. The MF52 has no such hardware — <a href=RfidManager.html#isSupported(java.lang.String)>isSupported</a> returns <code>false</code> and this returns <a href=domain/constants/ResultCode.html#UNSUPPORTED>UNSUPPORTED</a>. This indicates an unsupported feature, not a device failure. The MF52's settings are kept on the device and applied again on every connect; change them with their own setters.</p></div>
+                                        <div class="block"><p>Returns every setting of the reader to its default value. </p><p>All configured settings are reset, including transmit power and region. If the default region is not the one for your country, set the region again before reading tags. </p><p>Readers: RF88 · MF52 — each with its own defaults: </p><ul><li>RF88: the reader returns to its factory settings, then the SDK writes back its own defaults for <a href=RfidManager.html#getSearchMode()>search mode</a>, <a href=RfidManager.html#getSession()>session</a>, and <a href=RfidManager.html#getLinkProfile()>link profile</a>. This can take several seconds, and the reader cannot accept other operations until it completes.</li><li>MF52: the SDK applies, in one step, the settings a new device starts with, and keeps them on the device like any other setting: <pre><code> setting                        default
+ getPower()                     &quot;250&quot;       25.0 dBm
+ getRegion()                    &quot;1&quot;         FCC, the first in getSupportedRegions()
+ getLinkProfile()               &quot;0&quot;
+ getSession()                   &quot;0&quot;         S0
+ getSearchMode()                &quot;1&quot;         single target A
+ getSel()                       &quot;ALL&quot;
+ getAccessPassword()            &quot;00000000&quot;
+ getRssiReporting()             &quot;true&quot;
+ getMemoryBank(), getPointer()  &quot;1&quot;, &quot;32&quot;   EPC, from bit 32
+ getAction(), getTarget()       &quot;0&quot;, &quot;4&quot;    the SL flag
+ getBuzzerVolume()              &quot;1&quot;         tag sound on
+</code></pre> If the reader refuses these settings, it keeps the previous ones and this returns <a href=domain/constants/ResultCode.html#OTHER_ERROR>OTHER_ERROR</a>.</li></ul><p>Refused with <a href=domain/constants/ResultCode.html#BUSY>BUSY</a> while an inventory or a tag operation is running.</p></div>
 
                                         <dl>
 
@@ -5077,7 +5089,7 @@ UNCHECKED</code> before the license state has been queried. </p><p>Readers: MF52
 
                                         
                                             <dt><span class="returnLabel">Returns:</span></dt>
-                                            <dd><p>a result code defined in <a href=domain/constants/ResultCode.html>ResultCode</a>. When the reset went through but one of this SDK's defaults could not be written back, the code of that failure — the RF88 then keeps the reader's own value for that setting and those after it.</p></dd>
+                                            <dd><p>a result code defined in <a href=domain/constants/ResultCode.html>ResultCode</a>. On the RF88, when the reset went through but one of this SDK's defaults could not be written back, the code of that failure — the RF88 then keeps the reader's own value for that setting and those after it.</p></dd>
                                         
 
                                         
@@ -5095,7 +5107,7 @@ UNCHECKED</code> before the license state has been queried. </p><p>Readers: MF52
                                     <li class="blockList">
                                         <h4>factoryDefaultsRfid</h4>
                                         <pre class="methodSignature">@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/WorkerThread.html>WorkerThread</a>()@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=RfidManager.html#factoryDefaultsRfid()>factoryDefaultsRfid</a>()</pre>
-                                        <div class="block"><p>Same as <a href=RfidManager.html#factoryDefaults()>factoryDefaults</a> but only the RFID module — the RF88's own settings (buzzer, triggers, sleep) are left alone. </p><p>Readers: RF88 only. The MF52 has no such hardware — <a href=RfidManager.html#isSupported(java.lang.String)>isSupported</a> returns <code>false</code> and this returns <a href=domain/constants/ResultCode.html#UNSUPPORTED>UNSUPPORTED</a>. This indicates an unsupported feature, not a device failure.</p></div>
+                                        <div class="block"><p>Same as <a href=RfidManager.html#factoryDefaults()>factoryDefaults</a> but only the RFID module — the RF88's own settings (buzzer, triggers, sleep) are left alone. </p><p>Readers: RF88 only. The MF52 has no such hardware — <a href=RfidManager.html#isSupported(java.lang.String)>isSupported</a> returns <code>false</code> and this returns <a href=domain/constants/ResultCode.html#UNSUPPORTED>UNSUPPORTED</a>. This indicates an unsupported feature, not a device failure. On the MF52, use <a href=RfidManager.html#factoryDefaults()>factoryDefaults</a>.</p></div>
 
                                         <dl>
 

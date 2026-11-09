@@ -117,7 +117,7 @@ repository and dependency lines — and is maintained on its own. The RFID-speci
 
 ## Build
 
-Java 11, `minSdk` 26. The SDK is `ex.dev.sdk:rfid:1.1.0` from Point Mobile's private Maven
+Java 11, `minSdk` 26. The SDK is `ex.dev.sdk:rfid:1.2.0` from Point Mobile's private Maven
 repository. `settings.gradle.kts` declares the repository and reads the access token from
 `local.properties` (`pointmobileMavenToken`), then from the Gradle property of the same name, and
 stops the sync with a message when neither is set. Never write the token into a tracked file. The
